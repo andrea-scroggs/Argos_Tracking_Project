@@ -115,7 +115,7 @@ headerLine = f.readline()
 lineString = f.readline()
 
 while lineString != "":
-
+     
      # Use the split command to parse the items in lineString into a list object
      line_data = lineString.split(',')
         
@@ -124,6 +124,7 @@ while lineString != "":
      timestamp = line_data[2]  # Observation date ("timestamp")
      lc = line_data[14]        # Observation location class ("argos:lc")
      if lc not in ['"1"', '"2"', '"3"']:
+         lineString = f.readline()
          continue
      lat = float(line_data[3])        # Observation latitude  ("location-lat")
      lon = float(line_data[4])        # Observation longitude ("location-lon")
@@ -138,9 +139,9 @@ while lineString != "":
          print(f'Record {event_id}: {tag_id} was IN the box at {timestamp}')
      else:
          print(f'Record {event_id}: {tag_id} was NOT IN the box at {timestamp}')
-    
-    #Read the next line from the file
-    lineString = f.readline()
+         
+     #update line string
+     lineString = f.readline()
 
 #close the file
 f.close()
